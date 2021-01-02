@@ -89,7 +89,7 @@ new Zdog.RoundedRect({
 });
 
 function animate() {
-  illo.rotate.y += isSpinning ? 0.01 : 0;
+  illo.rotate.y += isSpinning ? 0.1 : 0;
   // if(isSpinning){
   // illo.rotate.x > 0 ? -- illo.rotate.x : 0 ;
 
