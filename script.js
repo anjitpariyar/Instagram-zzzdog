@@ -2,7 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
-  let isSpinning = false;
+  let isSpinning = true;
   let height = window.screen.availHeight
   let width = window.screen.availWidth
   let canvas = document.getElementById('canvas');
@@ -26,6 +26,8 @@ grd.addColorStop(1, "#fd1d1d");
 let illo = new Zdog.Illustration({
   element: '.zdog-canvas',
   dragRotate: true,
+  dragRotateY: false,
+
 
   resize: {
     height: 800,
@@ -39,6 +41,9 @@ let illo = new Zdog.Illustration({
   },
   onDragStart: function() {
     isSpinning = false;
+  },
+  onDragEnd: function() {
+    isSpinning = true;
   },
 });
 
@@ -84,7 +89,13 @@ new Zdog.RoundedRect({
 });
 
 function animate() {
-  illo.rotate.y += isSpinning ? 0.03 : 0;
+  illo.rotate.y += isSpinning ? 0.01 : 0;
+  // if(isSpinning){
+  // illo.rotate.x > 0 ? -- illo.rotate.x : 0 ;
+
+  // }
+
+
   illo.updateRenderGraph();
   requestAnimationFrame( animate );
 }
