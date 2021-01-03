@@ -3,8 +3,9 @@
 window.addEventListener('DOMContentLoaded', (event) => {
 
   let isSpinning = true;
-  let height = window.screen.availHeight
+  let height = window.screen.availHeight 
   let width = window.screen.availWidth
+  height = Math.min(height, width)
   let canvas = document.getElementById('canvas');
   let  TAU = Zdog.TAU;
 
@@ -42,8 +43,12 @@ let illo = new Zdog.Illustration({
   onDragStart: function() {
     isSpinning = false;
   },
+  
   onDragEnd: function() {
-    isSpinning = true;
+    //isSpinning = true;
+    setTimeout(e => {
+        isSpinning = true 
+    }, 1000)
   },
 });
 
@@ -60,28 +65,28 @@ const domepiece = new Zdog.Group({
 // circle
 new Zdog.Ellipse({
   addTo: illo,
-  diameter: 0.3 * height,
-  translate: { z: 200 },
-  stroke: 50,
+  diameter: 0.45 * height,
+  translate: { z: 100 },
+  stroke: 30,
   color: '#fff',
 
 });
 
 new Zdog.Shape({
   addTo: illo,
-  stroke: 80,
+  stroke: 50,
   color: '#fff',
-  translate: { z: 100, x : - 0.2 * height , y :- 0.2 * height  },
+  translate: { z: 50, x :  0.3 * height , y :- 0.3 * height  },
 
 });
 
 // square
 new Zdog.RoundedRect({
   addTo: illo,
-  width: 0.5 * height,
-  height: 0.5 * height,
+  width: 0.7 * height,
+  height: 0.7 * height,
   translate: { z: -40, x: 0, y:0},
-  stroke: 100,
+  stroke: 50,
   color : grd,
   fill: true,
    depth: 80,
@@ -89,7 +94,7 @@ new Zdog.RoundedRect({
 });
 
 function animate() {
-  illo.rotate.y += isSpinning ? 0.1 : 0;
+  illo.rotate.y += isSpinning ? 0.01: 0;
   // if(isSpinning){
   // illo.rotate.x > 0 ? -- illo.rotate.x : 0 ;
 
